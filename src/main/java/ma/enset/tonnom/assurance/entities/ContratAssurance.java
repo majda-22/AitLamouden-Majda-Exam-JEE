@@ -1,7 +1,9 @@
 package ma.enset.tonnom.assurance.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 

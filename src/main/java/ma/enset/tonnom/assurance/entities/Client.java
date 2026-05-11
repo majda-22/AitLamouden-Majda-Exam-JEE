@@ -1,7 +1,10 @@
 package ma.enset.tonnom.assurance.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity                    // Cette classe = une table en base de données
