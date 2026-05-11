@@ -55,6 +55,8 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority("ROLE_EMPLOYE", "ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyAuthority("ROLE_EMPLOYE", "ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority("ROLE_CLIENT", "ROLE_EMPLOYE", "ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))

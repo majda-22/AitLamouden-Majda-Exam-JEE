@@ -38,6 +38,28 @@ public class AssuranceApplication {
                 userRepo.save(admin);
                 System.out.println("Admin cree - user: admin / pass: admin123");
             }
+
+            if (userRepo.findByUsername("employe") == null) {
+                var employeRole = roleRepo.findByRoleName("ROLE_EMPLOYE");
+                var employe = ma.enset.tonnom.assurance.entities.AppUser.builder()
+                        .username("employe")
+                        .password(encoder.encode("employe123"))
+                        .roles(java.util.List.of(employeRole))
+                        .build();
+                userRepo.save(employe);
+                System.out.println("Employe cree - user: employe / pass: employe123");
+            }
+
+            if (userRepo.findByUsername("client") == null) {
+                var clientRole = roleRepo.findByRoleName("ROLE_CLIENT");
+                var client = ma.enset.tonnom.assurance.entities.AppUser.builder()
+                        .username("client")
+                        .password(encoder.encode("client123"))
+                        .roles(java.util.List.of(clientRole))
+                        .build();
+                userRepo.save(client);
+                System.out.println("Client cree - user: client / pass: client123");
+            }
         };
     }
 
@@ -63,7 +85,7 @@ public class AssuranceApplication {
 
             clientRepo.save(c1);
             clientRepo.save(c2);
-            System.out.println("✅ Clients créés : " + clientRepo.findAll());
+            System.out.println("Clients créés : " + clientRepo.findAll());
 
             
             ContratAutomobile auto = new ContratAutomobile();
@@ -91,7 +113,7 @@ public class AssuranceApplication {
             hab.setSuperficie(85.0);
             contratRepo.save(hab);
 
-            System.out.println("✅ Contrats créés : " + contratRepo.findAll().size());
+            System.out.println("Contrats créés : " + contratRepo.findAll().size());
 
            
             Paiement p1 = Paiement.builder()
@@ -102,8 +124,8 @@ public class AssuranceApplication {
                     .build();
             paiementRepo.save(p1);
 
-            System.out.println("✅ Paiement créé");
-            System.out.println("🚀 Base de données initialisée avec succès !");
+            System.out.println(" Paiement créé");
+            System.out.println(" Base de données initialisée avec succès !");
         };
     }
 }

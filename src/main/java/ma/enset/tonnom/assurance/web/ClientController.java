@@ -37,6 +37,12 @@ public class ClientController {
         return service.saveClient(dto);
     }
 
+    @PutMapping("/{id}")
+    @Operation(summary = "Modifier un client")
+    public ClientDTO updateClient(@PathVariable Long id, @RequestBody ClientDTO dto) {
+        return service.updateClient(id, dto);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)  
     @Operation(summary = "Supprimer un client")

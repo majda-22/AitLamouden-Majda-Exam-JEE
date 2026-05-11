@@ -30,4 +30,10 @@ public class PaiementController {
     public PaiementDTO createPaiement(@RequestBody PaiementDTO dto) {
         return service.savePaiement(dto);
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Modifier un paiement")
+    public PaiementDTO updatePaiement(@PathVariable Long id, @RequestBody PaiementDTO dto) {
+        return service.updatePaiement(id, dto);
+    }
 }

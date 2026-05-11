@@ -10,6 +10,7 @@ public interface ContratMapper {
 
     @Mapping(source = "client.id",  target = "clientId")
     @Mapping(source = "client.nom", target = "clientNom")
+    @Mapping(target = "typeContrat", ignore = true)
     ContratAssuranceDTO toDTO(ContratAssurance contrat);
 
     @Mapping(source = "clientId", target = "client.id")

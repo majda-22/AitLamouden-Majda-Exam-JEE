@@ -1,0 +1,99 @@
+<main class="page">
+  <header class="topbar">
+    <div>
+      <h1>Gestion des contrats</h1>
+      <p>Creation des contrats automobile, habitation et sante.</p>
+    </div>
+    <nav>
+      <a routerLink="/clients">Clients</a>
+      <a routerLink="/contrats">Contrats</a>
+      <button (click)="logout()">Deconnexion</button>
+    </nav>
+  </header>
+
+  <div *ngIf="erreur" class="alert">{{ erreur }}</div>
+
+  <section class="panel">
+    <h2>Nouveau contrat</h2>
+    <div class="grid">
+      <select [(ngModel)]="contrat.typeContrat">
+        <option value="AUTOMOBILE">Automobile</option>
+        <option value="HABITATION">Habitation</option>
+        <option value="SANTE">Sante</option>
+      </select>
+      <select [(ngModel)]="contrat.clientId">
+        <option [ngValue]="null">Client</option>
+        <option *ngFor="let client of clients" [ngValue]="client.id">{{ client.nom }}</option>
+      </select>
+      <input [(ngModel)]="contrat.dateSouscription" type="date" />
+      <select [(ngModel)]="contrat.statut">
+        <option value="EN_COURS">En cours</option>
+        <option value="VALIDE">Valide</option>
+        <option value="RESILIE">Resilie</option>
+      </select>
+      <input [(ngModel)]="contrat.montantCotisation" type="number" placeholder="Cotisation" />
+      <input [(ngModel)]="contrat.dureeContrat" type="number" placeholder="Duree en mois" />
+      <input [(ngModel)]="contrat.tauxCouverture" type="number" placeholder="Taux couverture" />
+    </div>
+
+    <div class="grid type-grid" *ngIf="contrat.typeContrat === 'AUTOMOBILE'">
+      <input [(ngModel)]="contrat.numeroImmatriculation" placeholder="Immatriculation" />
+      <input [(ngModel)]="contrat.marqueVehicule" placeholder="Marque" />
+      <input [(ngModel)]="contrat.modeleVehicule" placeholder="Modele" />
+    </div>
+
+    <div class="grid type-grid" *ngIf="contrat.typeContrat === 'HABITATION'">
+      <select [(ngModel)]="contrat.typeLogement">
+        <option value="APPARTEMENT">Appartement</option>
+        <option value="MAISON">Maison</option>
+        <option value="LOCAL_COMMERCIAL">Local commercial</option>
+      </select>
+      <input [(ngModel)]="contrat.adresse" placeholder="Adresse" />
+      <input [(ngModel)]="contrat.superficie" type="number" placeholder="Superficie" />
+    </div>
+
+    <div class="grid type-grid" *ngIf="contrat.typeContrat === 'SANTE'">
+      <select [(ngModel)]="contrat.niveauCouverture">
+        <option value="BASIQUE">Basique</option>
+        <option value="INTERMEDIAIRE">Intermediaire</option>
+        <option value="PREMIUM">Premium</option>
+      </select>
+      <input [(ngModel)]="contrat.nombrePersonnesCouvertes" type="number" placeholder="Personnes couvertes" />
+    </div>
+
+    <button (click)="enregistrerContrat()">Ajouter le contrat</button>
+  </section>
+
+  <section class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Client</th>
+          <th>Statut</th>
+          <th>Cotisation</th>
+          <th>Details</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of contrats">
+          <td>{{ c.id }}</td>
+          <td>{{ c.typeContrat }}</td>
+          <td>{{ c.clientNom }}</td>
+          <td>{{ c.statut }}</td>
+          <td>{{ c.montantCotisation }}</td>
+          <td>
+            <span *ngIf="c.typeContrat === 'AUTOMOBILE'">{{ c.marqueVehicule }} {{ c.modeleVehicule }}</span>
+            <span *ngIf="c.typeContrat === 'HABITATION'">{{ c.typeLogement }} - {{ c.adresse }}</span>
+            <span *ngIf="c.typeContrat === 'SANTE'">{{ c.niveauCouverture }} - {{ c.nombrePersonnesCouvertes }} pers.</span>
+          </td>
+          <td>
+            <button class="danger" (click)="supprimerContrat(c.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>

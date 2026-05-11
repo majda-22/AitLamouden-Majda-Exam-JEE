@@ -1,0 +1,22 @@
+<main class="login-page">
+  <section class="login-card">
+    <h1>Assurance</h1>
+    <p>Connectez-vous pour acceder a la gestion des contrats.</p>
+
+    <div *ngIf="erreur" class="alert">{{ erreur }}</div>
+
+    <label for="username">Nom d'utilisateur</label>
+    <input id="username" [(ngModel)]="username" type="text" autocomplete="username" />
+
+    <label for="password">Mot de passe</label>
+    <input id="password" [(ngModel)]="password" type="password" autocomplete="current-password" />
+
+    <button (click)="login()" [disabled]="loading">
+      {{ loading ? 'Connexion...' : 'Se connecter' }}
+    </button>
+
+    <div class="hint">
+      Comptes: admin/admin123, employe/employe123, client/client123
+    </div>
+  </section>
+</main>

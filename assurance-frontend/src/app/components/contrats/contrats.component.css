@@ -1,0 +1,95 @@
+.page {
+  min-height: 100vh;
+  background: #f3f6fb;
+  padding: 24px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1, h2 {
+  margin: 0 0 8px;
+  color: #102033;
+}
+
+p {
+  margin: 0;
+  color: #617086;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+a, button {
+  padding: 9px 13px;
+  border-radius: 6px;
+  border: 0;
+  text-decoration: none;
+  background: #1f6feb;
+  color: white;
+  cursor: pointer;
+}
+
+.danger {
+  background: #c24135;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #d7dee9;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.type-grid {
+  background: #f7f9fc;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+input, select {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #c8d1df;
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  background: #102033;
+  color: white;
+}
+
+th, td {
+  padding: 11px;
+  border-bottom: 1px solid #e1e7ef;
+}
+
+.alert {
+  background: #fde8e8;
+  color: #8a1f1f;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}

@@ -1,0 +1,58 @@
+<main class="page">
+  <header class="topbar">
+    <div>
+      <h1>Gestion des clients</h1>
+      <p>Liste, creation, modification et suppression des clients.</p>
+    </div>
+    <nav>
+      <a routerLink="/clients">Clients</a>
+      <a routerLink="/contrats">Contrats</a>
+      <button (click)="logout()">Deconnexion</button>
+    </nav>
+  </header>
+
+  <div *ngIf="erreur" class="alert">{{ erreur }}</div>
+
+  <section class="panel">
+    <h2>Ajouter un client</h2>
+    <div class="form-row">
+      <input [(ngModel)]="nouveauClient.nom" placeholder="Nom" />
+      <input [(ngModel)]="nouveauClient.email" placeholder="Email" />
+      <button (click)="ajouterClient()">Ajouter</button>
+    </div>
+  </section>
+
+  <section *ngIf="clientEnEdition" class="panel edit-panel">
+    <h2>Modifier le client #{{ clientEnEdition.id }}</h2>
+    <div class="form-row">
+      <input [(ngModel)]="clientEnEdition.nom" placeholder="Nom" />
+      <input [(ngModel)]="clientEnEdition.email" placeholder="Email" />
+      <button (click)="enregistrerModification()">Enregistrer</button>
+      <button class="secondary" (click)="annulerModification()">Annuler</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client.id }}</td>
+          <td>{{ client.nom }}</td>
+          <td>{{ client.email }}</td>
+          <td class="actions">
+            <button class="secondary" (click)="modifierClient(client)">Modifier</button>
+            <button class="danger" (click)="supprimerClient(client.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>

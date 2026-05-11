@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Builder
 public class ContratAssuranceDTO {
     private Long id;
+    private String typeContrat;
     private LocalDate dateSouscription;
     private StatutContrat statut;
     private LocalDate dateValidation;
@@ -17,5 +18,5 @@ public class ContratAssuranceDTO {
     private Integer dureeContrat;
     private Double tauxCouverture;
     private Long clientId;       
-    private String clientNom;    
+    private String clientNom;
 }
