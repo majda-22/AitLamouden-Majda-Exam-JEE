@@ -22,6 +22,7 @@ public class Paiement {
     private TypePaiement type;  // MENSUALITE, PAIEMENT_ANNUEL, PAIEMENT_EXCEPTIONNEL
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "contrat_id")
     private ContratAssurance contrat;
 }

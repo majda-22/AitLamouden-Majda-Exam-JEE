@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,11 +30,13 @@ public class ContratAssurance {
     private Double tauxCouverture;
 
     // Plusieurs contrats appartiennent à un seul client
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "client_id")  // Nom de la colonne de clé étrangère
     private Client client;
 
     // Un contrat peut avoir plusieurs paiements
+    @ToString.Exclude
     @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
     private List<Paiement> paiements;
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.util.List;
 
 @Entity                    // Cette classe = une table en base de données
@@ -23,6 +24,7 @@ public class Client {
 
     // Un client peut avoir PLUSIEURS contrats
     // mappedBy = le nom du champ "client" dans la classe ContratAssurance
+    @ToString.Exclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ContratAssurance> contrats;
 }
