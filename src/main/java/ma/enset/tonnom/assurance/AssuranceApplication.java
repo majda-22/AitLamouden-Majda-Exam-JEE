@@ -15,6 +15,32 @@ public class AssuranceApplication {
         SpringApplication.run(AssuranceApplication.class, args);
     }
 
+    @Bean
+    CommandLineRunner initUsers(
+            ma.enset.tonnom.assurance.repositories.AppUserRepository userRepo,
+            ma.enset.tonnom.assurance.repositories.AppRoleRepository roleRepo,
+            org.springframework.security.crypto.password.PasswordEncoder encoder) {
+
+        return args -> {
+            if (roleRepo.findByRoleName("ROLE_ADMIN") == null) {
+                roleRepo.save(new ma.enset.tonnom.assurance.entities.AppRole(null, "ROLE_ADMIN"));
+                roleRepo.save(new ma.enset.tonnom.assurance.entities.AppRole(null, "ROLE_EMPLOYE"));
+                roleRepo.save(new ma.enset.tonnom.assurance.entities.AppRole(null, "ROLE_CLIENT"));
+            }
+
+            if (userRepo.findByUsername("admin") == null) {
+                var adminRole = roleRepo.findByRoleName("ROLE_ADMIN");
+                var admin = ma.enset.tonnom.assurance.entities.AppUser.builder()
+                        .username("admin")
+                        .password(encoder.encode("admin123"))
+                        .roles(java.util.List.of(adminRole))
+                        .build();
+                userRepo.save(admin);
+                System.out.println("Admin cree - user: admin / pass: admin123");
+            }
+        };
+    }
+
     
     @Bean
     CommandLineRunner initDatabase(
